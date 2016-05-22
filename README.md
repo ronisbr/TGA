@@ -11,6 +11,10 @@ https://github.com/Elbullazul/OS-X-El-Capitan
 Additional Information
 ======================
 
+The gnome shell theme was forked from:
+
+https://github.com/GNOME/gnome-shell/tree/master/data/theme
+
 The GTK 3.0 theme was forked from:
 
 https://github.com/GNOME/gtk/tree/master/gtk/theme/Adwaita
