@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=X-GNOME-Metatheme
+Name=TGA
+Comment=Tweaked Gnome's Adwaita
+Encoding=UTF-8
+
+[X-GNOME-Metatheme]
+Name=TGA
+GtkTheme=TGA
+ButtonLayout=maximize,minimize,close:menu
