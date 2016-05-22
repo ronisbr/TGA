@@ -7,4 +7,4 @@ Encoding=UTF-8
 [X-GNOME-Metatheme]
 Name=TGA
 GtkTheme=TGA
-ButtonLayout=maximize,minimize,close:menu
+ButtonLayout=maximize,minimize,close:
