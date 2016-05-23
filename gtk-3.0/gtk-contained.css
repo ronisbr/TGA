@@ -2487,8 +2487,8 @@ notebook > header {
       text-shadow: none;
       -gtk-icon-shadow: none; }
   notebook > header tab {
-    min-height: 30px;
-    min-width: 30px;
+    min-height: 10px;
+    min-width: 10px;
     padding: 3px 12px;
     outline-offset: -5px;
     color: #6c6c6c;
@@ -2506,7 +2506,8 @@ notebook > header {
         border-color: transparent;
         background-color: transparent; }
     notebook > header tab:checked {
-      color: #4c4c4c; }
+      color: white;
+      background-color: #066dc1; }
       notebook > header tab:checked.reorderable-page {
         border-color: rgba(170, 170, 170, 0.5);
         background-color: rgba(245, 245, 245, 0.5); }

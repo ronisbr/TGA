@@ -2161,8 +2161,8 @@ notebook {
     }
 
     tab {
-      min-height: 30px;
-      min-width: 30px;
+      min-height: 10px;
+      min-width: 10px;
       padding: 3px 12px;
 
       outline-offset: -5px;
@@ -2192,7 +2192,8 @@ notebook {
       }
 
       &:checked {
-        color: $fg_color;
+        color: lighten($selected_fg_color, 20%);
+        background-color: $selected_bg_color;
         &.reorderable-page {
           border-color: transparentize($borders_color, 0.5);
           background-color: transparentize($bg_color, 0.5);
