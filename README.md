@@ -11,9 +11,11 @@ https://github.com/Elbullazul/OS-X-El-Capitan
 Screenshots
 -----------
 
-![Screenshot 01](/screenshot/screenshot_01.png)
-![Screenshot 02](/screenshot/screenshot_02.png)
-![Screenshot 03](/screenshot/screenshot_03.png)
+![Screenshot 01](https://raw.githubusercontent.com/ronisbr/TGA/master/screenshots/screenshot_01.png)
+
+![Screenshot 02](https://raw.githubusercontent.com/ronisbr/TGA/master/screenshots/screenshot_02.png)
+
+![Screenshot 03](https://raw.githubusercontent.com/ronisbr/TGA/master/screenshots/screenshot_03.png)
 
 Installation
 ============
