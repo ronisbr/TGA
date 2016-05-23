@@ -1,5 +1,5 @@
 $base_color:                      #ffffff;
-$text_color:                      #4c4c4c;
+$text_color:                      #1c1c1c;
 
 $bg_color:                        #f5f5f5;
 $fg_color:                        #4c4c4c;
@@ -17,7 +17,7 @@ $top_hilight:                     $borders_edge;
 $dark_fill:                       mix($borders_color, $bg_color, 50%);
 
 $headerbar_color:                 #cecece;
-$menu_color:                      $base_color;
+$menu_color:                      $bg_color;
 $popover_bg_color:                $bg_color;
 $popover_hover_color:             lighten($bg_color, 5%);
 
@@ -39,6 +39,7 @@ $osd_insensitive_fg_color:        mix($osd_fg_color, opacify($osd_bg_color, 1), 
 $osd_borders_color:               transparentize(black, 0.3);
 
 $sidebar_bg_color:                $headerbar_color;
+$sidebar_fg_color:                darken($fg_color, 40%);
 $base_hover_color:                transparentize($fg_color, 0.95);
 
 $tooltip_borders_color:           transparentize(white, 0.9);
