@@ -18,7 +18,7 @@ Screenshots
 ![Screenshot 03](https://raw.githubusercontent.com/ronisbr/TGA/master/screenshots/screenshot_03.png)
 
 Installation
-============
+------------
 
 You only need to clone the repository inside your `themes` folder:
 
@@ -28,6 +28,7 @@ mkdir -p .themes
 cd themes
 git clone https://github.com/ronisbr/TGA.git
 ```
+
 Then select **TGA** theme for GTK and Gnome shell in `gnome-tweak-tool`.
 
 If you want to change the buttons position to match what you see in the
@@ -43,7 +44,7 @@ theme. It can be installed from:
 https://extensions.gnome.org/extension/19/user-themes/
 
 Additional Information
-======================
+----------------------
 
 * The gnome shell theme was forked from:
 
