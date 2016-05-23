@@ -29,9 +29,9 @@ $panel-corner-radius: 6px;
 /* GLOBALS */
 $font-size: 11;
 $font-family: Cantarell, Sans-Serif;
-$_bubble_bg_color: opacify($osd_bg_color,0.25);
+$_bubble_bg_color: transparentize($osd_bg_color,0.05);
 $_bubble_fg_color: $osd_fg_color;
-$_bubble_borders_color: transparentize($osd_fg_color,0.8);
+$_bubble_borders_color: transparentize($osd_fg_color,0.5);
 
 stage {
   font-family: $font-family;
@@ -181,7 +181,7 @@ StScrollBar {
   border-radius: 9px;
   color: $osd_fg_color;
   background-color: transparentize(darken($osd_bg_color,10%),0.05);
-  border: 1px solid $_bubble_borders_color;
+  border: 3px solid $_bubble_borders_color;
   .modal-dialog-content-box {
     padding: 24px;
   }
@@ -209,7 +209,7 @@ StScrollBar {
 /* End Session Dialog */
 .end-session-dialog {
   spacing: 42px;
-  border: 1px solid $_bubble_borders_color;
+  border: 3px solid $_bubble_borders_color;
 }
 
   .end-session-dialog-list {
@@ -443,7 +443,7 @@ StScrollBar {
   }
 
   .audio-selection-device {
-    border: 1px solid $_bubble_borders_color;
+    border: 3px solid $_bubble_borders_color;
     border-radius: 12px;
     &:active,&:hover,&:focus { background-color: $selected_bg_color; }
   }
@@ -502,7 +502,7 @@ StScrollBar {
 
   .popup-menu-arrow { } //defined globally in the TOP BAR
   .popup-sub-menu {
-    background-color: darken($bg_color,2%);
+    background-color: darken($bg_color,10%);
     box-shadow: inset 0 -1px 0px lighten($borders_color,5%);
   }
 
@@ -517,9 +517,17 @@ StScrollBar {
       box-shadow: inset 0 1px 0px lighten($borders_color,5%);
       font-weight: bold;
     }
-    &.selected { background-color: transparentize($fg_color,0.9); color: $fg_color; }
-    &:active { background-color: $selected_bg_color; color: $selected_fg_color; }
-    &:insensitive { color: transparentize($fg_color,.5); }
+    &.selected {
+      background-color: transparentize($fg_color,0.9);
+      color: darken($fg_color,20%);
+    }
+    &:active {
+      background-color: $selected_bg_color;
+      color: $selected_fg_color;
+    }
+    &:insensitive {
+      color: transparentize($fg_color,.5);
+    }
   }
 
   .popup-inactive-menu-item { //all icons and other graphical elements
@@ -684,7 +692,7 @@ StScrollBar {
 %osd-panel {
   color: $_bubble_fg_color;
   background-color: $_bubble_bg_color;
-  border: 1px solid $_bubble_borders_color;
+  border: 3px solid $_bubble_borders_color;
   border-radius: 12px;
   padding: 12px;
 }
@@ -710,7 +718,7 @@ StScrollBar {
 /* TOP BAR */
 
 #panel {
-  background-color: black;
+  background-color: transparentize($bg_color,0.3);
   font-weight: bold;
   height: 1.86em;
 
@@ -745,7 +753,7 @@ StScrollBar {
     -natural-hpadding: 12px;
     -minimum-hpadding: 6px;
     font-weight: bold;
-    color: #ccc;
+    color: $fg_color;
     transition-duration: 100ms;
 
     .app-menu-icon {
@@ -756,7 +764,7 @@ StScrollBar {
     }
 
     &:hover {
-      color: lighten($fg_color, 10%);
+      color: darken($fg_color, 20%);
     }
 
     &:active, &:overview, &:focus, &:checked {
@@ -764,7 +772,7 @@ StScrollBar {
       // a box-shadow
       background-color: rgba(0, 0, 0, 0.01);
       box-shadow: inset 0 -2px 0px lighten($selected_bg_color,5%);
-      color: lighten($fg_color,10%);
+      color: darken($fg_color,20%);
 
       & > .system-status-icon { icon-shadow: black 0 2px 2px; }
     }
@@ -1051,7 +1059,7 @@ StScrollBar {
     border: 1px solid lighten($borders_color,5%);
 
     &:hover, &:focus {
-      background-color: transparentize($fg_color,0.9);
+      background-color: transparentize($fg_color,0.7);
       color: $fg_color;
       border: none;
       padding: 14px;
@@ -1218,9 +1226,19 @@ StScrollBar {
     height: 1px;
   }
 
-  .list-search-result-content { spacing: 12px; padding: 12px; }
-  .list-search-result-title { font-size: 1.5em; color: darken($osd_fg_color,5%); }
-  .list-search-result-description { color: darken($osd_fg_color,15%); }
+  .list-search-result-content {
+    spacing: 12px;
+    padding: 12px;
+  }
+  .list-search-result-title {
+    font-size: 1.5em;
+    color: lighten($osd_bg_color,10%);
+    text-shadow: 0px 1px 2px black;
+  }
+  .list-search-result-description {
+    color: darken($osd_bg_color,5%);
+    text-shadow: 0px 1px 2px black;
+  }
   .search-provider-icon { padding: 15px; }
   .search-provider-icon-more {
     width: 16px;
@@ -1234,7 +1252,7 @@ StScrollBar {
   #dash {
     font-size: 9pt;
     color: $_bubble_fg_color;
-    background-color: $_bubble_bg_color;
+    background-color: transparentize($bg_color,0.25);
     padding: 4px 0;
     border: 1px solid rgba(128, 128, 128, 0.4);
     border-left: 0px;
@@ -1265,7 +1283,7 @@ StScrollBar {
     border-radius: 7px;
     padding: 4px 12px;
     color: $osd_fg_color;
-    background-color: transparentize($osd_bg_color,0.3);
+    background-color: transparentize($osd_bg_color,0.25);
     text-align: center;
     -x-offset: 8px;
   }
@@ -1335,7 +1353,8 @@ StScrollBar {
   }
 
   %icon_tile {
-    color: $osd_fg_color;
+    color: $bg_color;
+    text-shadow: 0px 1px 2px black;
     border-radius: 4px;
     padding: 6px;
     border: 1px solid transparent;
@@ -1353,6 +1372,9 @@ StScrollBar {
     transition-duration: 100ms;
   }
 
+  .show-apps-icon {
+    color: $osd_fg_color;
+  }
 
   // Collections
   .app-folder-popup { //expanded collection
@@ -1416,14 +1438,14 @@ StScrollBar {
 
 %overview-panel {
   color: $_bubble_fg_color;
-  background-color: $_bubble_bg_color;
+  background-color: transparentize($bg_color,0.25);
   border: 1px solid $_bubble_borders_color;
 }
 
 %status_text {
   font-size: 2em;
   font-weight: bold;
-  color: $fg_color;
+  color: $bg_color;
 }
 
 /* NOTIFICATIONS & MESSAGE TRAY */
@@ -1594,7 +1616,7 @@ $legacy_icon_size: 24px;
     font-weight: bold;
     border-radius: 5px;
     border: 1px solid $borders-color;
-    color: white;
+    color: $fg_color;
     &:focus { @include button(focus); }
     &:hover,&:checked { @include button(hover); }
     &:active { @include button(active);}
@@ -1640,7 +1662,7 @@ $legacy_icon_size: 24px;
     .vertical & { padding-top: 0.5em; }
     .horizontal & { padding-left: 0.5em; }
   }
-  
+
   .candidate-page-button {
     padding: 4px;
   }
@@ -1811,7 +1833,7 @@ $legacy_icon_size: 24px;
   .notification,
   .screen-shield-notification-source {
     padding: 12px 6px;
-    border: 1px solid $_bubble_borders_color;
+    border: 3px solid $_bubble_borders_color;
     background-color: transparentize($osd_bg_color,0.5);
     color: $_bubble_fg_color;
     border-radius: 4px;
@@ -1850,13 +1872,13 @@ $legacy_icon_size: 24px;
 
 // Looking Glass
 #LookingGlassDialog {
-  background-color: rgba(0,0,0,0.80);
+  background-color: $bg_color;
   spacing: 4px;
   padding: 4px;
-  border: 2px solid grey;
+  border: 2px solid darken($borders_color,20%);
   border-radius: 4px;
   & > #Toolbar {
-    border: 1px solid grey;
+    border: 1px solid $borders_color;
     border-radius: 4px;
   }
   .labels { spacing: 4px; }
@@ -1864,18 +1886,18 @@ $legacy_icon_size: 24px;
     -natural-hpadding: 12px;
     -minimum-hpadding: 6px;
     font-weight: bold;
-    color: #ccc;
+    color: $fg_color;
     transition-duration: 100ms;
     padding-left: .3em;
     padding-right: .3em;
     &:hover {
-      color: white;
-      text-shadow: black 0px 2px 2px;
+      color: darken($fg_color, 20%);
+      text-shadow: white 0px 2px 2px;
     }
     &:selected {
       border-bottom-width: 2px;
       border-color: lighten($selected_bg_color,5%);
-      color: white;
+      color: darken($fg_color, 20%);
       text-shadow: black 0px 2px 2px;
     }
   }
@@ -1885,12 +1907,12 @@ $legacy_icon_size: 24px;
 
   .lg-dialog {
     StEntry {
-      selection-background-color: #bbbbbb;
-      selected-color: #333333;
+      selection-background-color: $selected_bg_color;
+      selected-color: $selected_fg_color;
     }
     .shell-link {
-      color: #999999;
-      &:hover { color: #dddddd; }
+      color: lighten($fg_color,10%);
+      &:hover { color: darken($selected_bg_color,10%); }
      }
   }
 
@@ -1904,10 +1926,10 @@ $legacy_icon_size: 24px;
   }
 
   .lg-obj-inspector-button {
-      border: 1px solid gray;
+      border: 1px solid $borders_color;
       padding: 4px;
       border-radius: 4px;
-      &:hover { border: 1px solid #ffffff; }
+      &:hover { border: 1px solid darken($borders_color, 25%); }
   }
 
   #lookingGlassExtensions { padding: 4px; }
@@ -1918,7 +1940,7 @@ $legacy_icon_size: 24px;
   }
 
   .lg-extension {
-      border: 1px solid #6f6f6f;
+      border: 1px solid $borders_color;
       border-radius: 4px;
       padding: 4px;
   }
@@ -1932,8 +1954,8 @@ $legacy_icon_size: 24px;
   }
 
   #LookingGlassPropertyInspector {
-    background: rgba(0, 0, 0, 0.8);
-    border: 2px solid grey;
+    background: $bg_color;
+    border: 2px solid $borders_color;
     border-radius: 4px;
     padding: 6px;
   }
