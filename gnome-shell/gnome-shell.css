@@ -1165,7 +1165,7 @@ StScrollBar {
 .list-search-result:focus,
 .list-search-result:selected,
 .list-search-result:hover {
-  background-color: rgba(46, 52, 54, 0.1);
+  background-color: rgba(46, 52, 54, 0.6);
   transition-duration: 200ms; }
 
 .app-well-app:active .overview-icon, .app-well-app:checked .overview-icon,
@@ -1187,7 +1187,7 @@ StScrollBar {
 .grid-search-result:hover .overview-icon,
 .grid-search-result:focus .overview-icon,
 .grid-search-result:selected .overview-icon {
-  background-color: rgba(46, 52, 54, 0.1);
+  background-color: rgba(46, 52, 54, 0.6);
   transition-duration: 0ms;
   border-image: none;
   background-image: none; }

@@ -1319,7 +1319,7 @@ StScrollBar {
     @extend %icon_tile;
     &:active, &:checked { background-color: transparentize(darken($osd_bg_color,10%),.1); }
     &:focus, &:selected, &:hover {
-      background-color: transparentize($osd_fg_color,.9);
+      background-color: transparentize($osd_fg_color,.4);
       transition-duration: 200ms;
     }
   }
@@ -1338,7 +1338,7 @@ StScrollBar {
     &:hover .overview-icon,
     &:focus .overview-icon,
     &:selected .overview-icon {
-      background-color: transparentize($osd_fg_color,.9);
+      background-color: transparentize($osd_fg_color,.4);
       transition-duration: 0ms;
       border-image: none;
       background-image: none;
