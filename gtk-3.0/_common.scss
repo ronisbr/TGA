@@ -31,7 +31,7 @@ $button_transition: all 200ms $ease-out-quad;
   // to the adwaita engine: using real CSS properties is faster,
   // and we don't use any outlines for now.
 
-  outline-color: gtkalpha(currentCollor, 0.7);
+  outline-color: gtkalpha(currentColor, 0.7);
   outline-style: dashed;
   outline-offset: -3px;
   outline-width: 1px;
