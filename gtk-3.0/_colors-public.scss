@@ -66,6 +66,10 @@ text/foreground color of selections on backdrop windows */
 @define-color theme_unfocused_selected_fg_color #{"" + $selected_fg_color};
 
 /*
+insensitive color on backdrop windows*/
+@define-color unfocused_insensitive_color #{"" + $backdrop_insensitive_color};
+
+/*
 widgets main borders color */
 @define-color borders #{"" +$borders_color};
 
@@ -90,7 +94,7 @@ $_wm_highlight: if($variant=='light', $top_hilight,  // Sass gets mad if this is
 these colors are exported for the window manager and shouldn't be used in applications,
 read if you used those and something break with a version upgrade you're on your own... */
 @define-color wm_title shade(#{$fg_color}, 1.8);
-@define-color wm_unfocused_title #{"" + $backdrop_fg_color};
+@define-color wm_unfocused_title #{$backdrop_fg_color};
 @define-color wm_highlight #{"" + $_wm_highlight};
 @define-color wm_borders_edge #{"" + $borders_edge};
 

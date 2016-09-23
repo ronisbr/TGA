@@ -427,6 +427,29 @@ StScrollBar {
 .audio-selection-device-icon {
   icon-size: 64px; }
 
+/* Access Dialog */
+.access-dialog {
+  spacing: 30px; }
+
+.access-dialog-main-layout {
+  padding: 12px 20px 0;
+  spacing: 12px; }
+
+.access-dialog-content {
+  max-width: 28em;
+  spacing: 20px; }
+
+.access-dialog-icon {
+  min-width: 48px;
+  icon-size: 48px; }
+
+.access-dialog-title {
+  font-weight: bold; }
+
+.access-dialog-subtitle {
+  color: #8e8e80;
+  font-weight: bold; }
+
 /* Geolocation Dialog */
 .geolocation-dialog {
   spacing: 30px; }
@@ -581,6 +604,10 @@ StScrollBar {
   width: 96px;
   height: 96px; }
 
+/* Window Cycler */
+.cycler-highlight {
+  border: 5px solid rgba(74, 144, 217, 0.95); }
+
 /* Workspace Switcher */
 .workspace-switcher-group {
   padding: 12px; }
@@ -617,7 +644,7 @@ StScrollBar {
 /* Tiled window previews */
 .tile-preview {
   background-color: rgba(74, 144, 217, 0.45);
-  border: 1px solid rgba(74, 144, 217, 0.95); }
+  border: 3px solid rgba(74, 144, 217, 0.95); }
 
 .tile-preview-left.on-primary {
   border-radius: 6px 6px 0 0; }
@@ -769,7 +796,7 @@ StScrollBar {
   border-radius: 1.4em; }
   .calendar-day-base:hover, .calendar-day-base:focus {
     background-color: rgba(250, 250, 250, 0.95); }
-  .calendar-day-base:active {
+  .calendar-day-base:active, .calendar-day-base:selected {
     color: #3b4345;
     background-color: rgba(74, 144, 217, 0.95);
     border-color: transparent; }

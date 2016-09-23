@@ -457,6 +457,35 @@ StScrollBar {
     icon-size: 64px;
   }
 
+/* Access Dialog */
+.access-dialog {
+  spacing: 30px;
+}
+
+.access-dialog-main-layout {
+  padding: 12px 20px 0;
+  spacing: 12px;
+}
+
+.access-dialog-content {
+  max-width: 28em;
+  spacing: 20px;
+}
+
+.access-dialog-icon {
+  min-width: 48px;
+  icon-size: 48px;
+}
+
+.access-dialog-title {
+  font-weight: bold;
+}
+
+.access-dialog-subtitle {
+  color: #8e8e80;
+  font-weight: bold;
+}
+
 /* Geolocation Dialog */
 .geolocation-dialog {
   spacing: 30px;
@@ -517,17 +546,9 @@ StScrollBar {
       box-shadow: inset 0 1px 0px lighten($borders_color,5%);
       font-weight: bold;
     }
-    &.selected {
-      background-color: transparentize($fg_color,0.9);
-      color: darken($fg_color,20%);
-    }
-    &:active {
-      background-color: $selected_bg_color;
-      color: $selected_fg_color;
-    }
-    &:insensitive {
-      color: transparentize($fg_color,.5);
-    }
+    &.selected { background-color: transparentize($fg_color,0.9); color: darken($fg_color,20%); }
+    &:active { background-color: $selected_bg_color; color: $selected_fg_color; }
+    &:insensitive { color: transparentize($fg_color,.5); }
   }
 
   .popup-inactive-menu-item { //all icons and other graphical elements
@@ -658,6 +679,9 @@ StScrollBar {
     height: 96px;
   }
 
+/* Window Cycler */
+.cycler-highlight { border: 5px solid $selected_bg_color; }
+
 /* Workspace Switcher */
 .workspace-switcher-group { padding: 12px; }
 
@@ -700,7 +724,7 @@ StScrollBar {
 /* Tiled window previews */
 .tile-preview {
   background-color: transparentize($selected_bg_color,0.5);
-  border: 1px solid $selected_bg_color;
+  border: 3px solid $selected_bg_color;
 }
 
   .tile-preview-left.on-primary {
@@ -893,7 +917,7 @@ StScrollBar {
       margin: 2px;
       border-radius: 1.4em;
       &:hover,&:focus { background-color: lighten($bg_color,5%); }
-      &:active {
+      &:active,&:selected {
         color: lighten($selected_fg_color,5%);
         background-color: $selected_bg_color;
         border-color: transparent; //avoid jumparound due to today
@@ -1226,19 +1250,9 @@ StScrollBar {
     height: 1px;
   }
 
-  .list-search-result-content {
-    spacing: 12px;
-    padding: 12px;
-  }
-  .list-search-result-title {
-    font-size: 1.5em;
-    color: lighten($osd_bg_color,10%);
-    text-shadow: 0px 1px 2px black;
-  }
-  .list-search-result-description {
-    color: darken($osd_bg_color,5%);
-    text-shadow: 0px 1px 2px black;
-  }
+  .list-search-result-content { spacing: 12px; padding: 12px; }
+  .list-search-result-title { font-size: 1.5em; color: lighten($osd_bg_color,10%); text-shadow: 0px 1px 2px black; }
+  .list-search-result-description { color: darken($osd_bg_color,5%); text-shadow: 0px 1px 2px black; }
   .search-provider-icon { padding: 15px; }
   .search-provider-icon-more {
     width: 16px;

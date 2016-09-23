@@ -31,7 +31,7 @@ $button_transition: all 200ms $ease-out-quad;
   // to the adwaita engine: using real CSS properties is faster,
   // and we don't use any outlines for now.
 
-  outline-color: transparentize($fg_color, 0.7);
+  outline-color: gtkalpha(currentCollor, 0.7);
   outline-style: dashed;
   outline-offset: -3px;
   outline-width: 1px;
@@ -118,33 +118,7 @@ textview {
   }
 }
 
-textview border {
-  background-color: mix($bg_color, $base_color, 50%);
-  background-image: image(transparentize(black, 0.8));
-  background-repeat: no-repeat;
-
-  &:backdrop { background-color: mix($backdrop_bg_color, $backdrop_base_color, 50%); }
-
-  &.bottom {
-    background-size: 100% 1px;
-    background-position: top;
-  }
-
-  &.top {
-    background-size: 100% 1px;
-    background-position: bottom;
-  }
-
-  &.left {
-    background-size: 1px 100%;
-    background-position: right;
-  }
-
-  &.right {
-    background-size: 1px 100%;
-    background-position: left;
-  }
-}
+textview border { background-color: mix($bg_color, $base_color, 50%); }
 
 .rubberband,
 rubberband {
@@ -168,6 +142,8 @@ flowbox {
 }
 
 label {
+  caret-color: currentColor; // this shouldn't be needed.
+
   &.separator {
     @extend .dim-label;
 
@@ -228,7 +204,6 @@ assistant {
   border: none;
   background-color: $osd_bg_color;
   background-clip: padding-box;
-  outline-color: transparentize($osd_fg_color, 0.7);
   text-shadow: 0 1px black;
   -gtk-icon-shadow: 0 1px black;
 
@@ -277,8 +252,8 @@ entry {
     @include entry(normal);
 
     image { // icons inside the entry
-      &.left { padding-left: 0; padding-right: 6px; }
-      &.right { padding-left: 6px; padding-right: 0; }
+      &.left { margin-right: 6px; }
+      &.right { margin-left: 6px; }
     }
 
     undershoot {
@@ -308,7 +283,7 @@ entry {
 
     &:backdrop:disabled { @include entry(backdrop-insensitive); }
 
-    selection { &:focus, & { @extend %selected_items; }}
+    selection { @extend %selected_items; }
 
     // entry error and warning style
     @each $e_type, $e_color in (error, $error_color),
@@ -579,7 +554,6 @@ button {
 
     color: $osd_fg_color;
     border-radius: 5px;
-    outline-color: transparentize($osd_fg_color, 0.7);  //FIXME: define a color var?
 
     @include button(osd);
 
@@ -943,13 +917,6 @@ modelbutton.flat,
 
   &:backdrop,
   &:backdrop:hover { @extend %undecorated_button; }
-
-  // FIXME: remove the following when the checks/radios rewrite lands
-  check:last-child,
-  radio:last-child { margin-left: 8px; }
-
-  check:first-child,
-  radio:first-child { margin-right: 8px; }
 }
 
 modelbutton.flat arrow {
@@ -968,14 +935,20 @@ button.color {
   colorswatch:only-child {
     &, overlay { border-radius: 0; }
 
-    @if $variant == 'light' { box-shadow: 0 1px _text_shadow_color(); }
+    @if $variant == 'light' {
+      box-shadow: 0 1px _text_shadow_color();
+
+      .osd & { box-shadow: none; }
+    }
   }
 
   @if $variant == 'light' {
-    &:disabled,
-    &:backdrop,
-    &:active,
-    &:checked { colorswatch:only-child { box-shadow: none; }}
+    .osd &, & {
+      &:disabled,
+      &:backdrop,
+      &:active,
+      &:checked { colorswatch:only-child { box-shadow: none; }}
+    }
   }
 }
 
@@ -1880,7 +1853,8 @@ menubar,
 }
 
 menu,
-.menu {
+.menu,
+.context-menu {
   margin: 4px;
   padding: 2px 0px;
   background-color: $menu_color;
@@ -1927,6 +1901,10 @@ menu,
         margin-right: 10px;
       }
     }
+
+    // avoids labels color being overridden, see
+    // https://bugzilla.gnome.org/show_bug.cgi?id=767058
+    label { &:dir(rtl), &:dir(ltr) { color: inherit; }}
   }
 
   // overflow arrows
@@ -2017,9 +1995,6 @@ popover.background {
   separator { margin: 3px; }
 
   list separator { margin: 0px; }
-
-  checkbutton,
-  radiobutton { @extend modelbutton.flat; }
 }
 
 /*************
@@ -2162,8 +2137,8 @@ notebook {
     }
 
     tab {
-      min-height: 10px;
-      min-width: 10px;
+      min-height: 30px;
+      min-width: 30px;
       padding: 3px 12px;
 
       outline-offset: -5px;
@@ -2460,9 +2435,9 @@ scrollbar {
 
   &.horizontal {
     button {
-      &.down { -gtk-icon-source: -gtk-icontheme('pan-right-symbolic'); }
+      &.down { -gtk-icon-source: -gtk-icontheme('pan-end-symbolic'); }
 
-      &.up { -gtk-icon-source: -gtk-icontheme('pan-left-symbolic'); }
+      &.up { -gtk-icon-source: -gtk-icontheme('pan-start-symbolic'); }
     }
   }
 }
@@ -2653,7 +2628,6 @@ radio {
       -gtk-icon-shadow: none;
       color: inherit;
       border-color: currentColor;
-      animation: none;
     }
   }
 }
@@ -2680,34 +2654,28 @@ radio {
                                             -gtk-recolor(url("assets/dash-symbolic.symbolic.png"))); }
 }
 
-// let's animate things
-@keyframes check_check {
-  from { -gtk-icon-transform: translate(6px, -3px) rotate(-45deg) scaleY(0.2) rotate(45deg) scaleX(0); }
-  to { -gtk-icon-transform: unset; }
+// ANIMATION:
+// this is made with those pretty convoluted transitions, since checks and radios have to animate only on state changes,
+// the transformation is set on the active state and it get reset on the checked state.
+radio:not(:indeterminate):not(:checked):active:not(:backdrop) { -gtk-icon-transform: scale(0); }
+
+check:not(:indeterminate):not(:checked):active:not(:backdrop) { -gtk-icon-transform: translate(6px, -3px) rotate(-45deg) scaleY(0.2) rotate(45deg) scaleX(0); }
+
+radio,
+check {
+  &:active { -gtk-icon-transform: scale(0, 1); } // should tackle the indeterminate state, untested
+
+  &:checked:not(:backdrop), &:indeterminate:not(:backdrop) {
+    -gtk-icon-transform: unset;
+    transition: 400ms;
+  }
 }
 
-@keyframes check_radio {
-  from { -gtk-icon-transform: scale(0); }
-  to { -gtk-icon-transform: unset; }
-}
-
-@keyframes check_indeterminate {
-  from { -gtk-icon-transform: scale(0, 1); }
-  to { -gtk-icon-transform: unset; }
-}
-
-check:not(:indeterminate):checked { animation: check_check 400ms; }
-
-radio:not(:indeterminate):checked { animation: check_radio 400ms; }
-
-check:indeterminate:checked, radio:indeterminate:checked { animation: check_indeterminate 400ms; }
-
-// no animations in menus
 menu menuitem {
-  check:not(:indeterminate):checked,
-  radio:not(:indeterminate):checked,
-  check:indeterminate:checked:active,
-  radio:indeterminate:checked { animation: none; }
+  radio,
+  check {
+    &:checked:not(:backdrop), &:indeterminate:not(:backdrop) { transition: none; }
+  }
 }
 
 treeview.view check,
@@ -2757,7 +2725,6 @@ treeview.view radio:selected { &:focus, & { @extend %radio; }} // This is a work
   .osd & {
     border-color: $osd_borders_color;
     background-color: transparentize($osd_borders_color, 0.2);
-    outline-color: transparentize($osd_fg_color, 0.8);
 
     &:disabled { background-color: $osd_insensitive_bg_color; }
   }
@@ -3546,10 +3513,9 @@ calendar {
   }
 
   &.header {
-    border-bottom: 1px solid transparentize(black, 0.9);
-    border-radius: 0;
+    border-bottom-color: transparentize(black, 0.9);
 
-    &:backdrop { border-color: transparentize(black, 0.9); }
+    &:backdrop { border-bottom-color: transparentize(black, 0.9); }
   }
 
   &.button {
@@ -3557,39 +3523,25 @@ calendar {
 
     color: transparentize($fg_color, 0.55);
 
-    &:hover {
-      @extend %undecorated_button;
+    &:hover { color: $fg_color; }
 
-      color: $fg_color;
-    }
+    &:backdrop { color: transparentize($backdrop_fg_color,0.55); }
 
-    &:backdrop {
-      @extend %undecorated_button;
-
-      color: transparentize($backdrop_fg_color,0.55);
-    }
-
-    &:disabled {
-      @extend %undecorated_button;
-
-      color:  transparentize($insensitive_fg_color,0.55);
-    }
+    &:disabled { color:  transparentize($insensitive_fg_color,0.55); }
   }
 
-  &:indeterminate,
-  &:indeterminate:backdrop { color: gtkalpha(currentColor, 0.55); }
+  &.highlight {
+    color: $insensitive_fg_color;
 
-  &.highlight,
-  &.highlight:backdrop {
-    font-size: smaller;
-    color: $fg_color;
+    &:backdrop { color: $backdrop_insensitive_color; }
   }
-
 
   &:backdrop {
     color: $backdrop_text_color;
     border-color: $backdrop_borders_color;
   }
+
+  &.indeterminate { color: gtkalpha(currentColor, 0.1); }
 }
 
 
@@ -3682,10 +3634,6 @@ filechooserbutton:drop(active) {
 
   paned & { &.left, &.right, &.left:dir(rtl), &:dir(rtl), &:dir(ltr), & { border-style: none; }}
 
-}
-
-.sidebar .sidebar-label {
-    color: $sidebar_fg_color;
 }
 
 stacksidebar {
@@ -3893,48 +3841,51 @@ paned {
 /**************
  * GtkInfoBar *
  **************/
-infobar { border-style: none; }
 
-.info,
-.question,
-.warning,
-.error {
-  &:backdrop, & {
-    label, & { color: $selected_fg_color; }
-    background-color: $selected_bg_color;
-    border-color: darken($selected_bg_color, 10%);
-  }
+infobar {
+  border-style: none;
 
-  text-shadow: 0 1px darken($selected_bg_color, 10%);
+  &.info,
+  &.question,
+  &.warning,
+  &.error {
+    &:backdrop, & {
+      label, & { color: $selected_fg_color; }
+      background-color: $selected_bg_color;
+      border-color: darken($selected_bg_color, 10%);
+    }
 
-  &:backdrop { text-shadow: none; }
+    text-shadow: 0 1px darken($selected_bg_color, 10%);
 
-  button {
-    // FIXME: extend selection mode buttons
-    @include button(normal, $selected_bg_color, $selected_fg_color, none);
+    &:backdrop { text-shadow: none; }
 
-    &:hover { @include button(hover, $selected_bg_color, $selected_fg_color, none); }
+    button {
+      // FIXME: extend selection mode buttons
+      @include button(normal, $selected_bg_color, $selected_fg_color, none);
 
-    &:active,
-    &:checked { @include button(active, $selected_bg_color, $selected_fg_color, none); }
+      &:hover { @include button(hover, $selected_bg_color, $selected_fg_color, none); }
 
-    &:disabled { @include button(insensitive,$selected_bg_color,$selected_fg_color,none); }
+      &:active,
+      &:checked { @include button(active, $selected_bg_color, $selected_fg_color, none); }
 
-    &:backdrop {
-      @include button(backdrop, $selected_bg_color, $selected_fg_color, none);
-      border-color: _border_color($selected_bg_color);
+      &:disabled { @include button(insensitive,$selected_bg_color,$selected_fg_color,none); }
 
-      &:disabled {
-        @include button(backdrop-insensitive, $selected_bg_color,
-                        $selected_fg_color, none);
+      &:backdrop {
+        @include button(backdrop, $selected_bg_color, $selected_fg_color, none);
         border-color: _border_color($selected_bg_color);
+
+        &:disabled {
+          @include button(backdrop-insensitive, $selected_bg_color,
+                          $selected_fg_color, none);
+          border-color: _border_color($selected_bg_color);
+        }
       }
     }
+
+    selection { background-color: darken($selected_bg_color, 10%); }
+
+    *:link { @extend %link_selected; }
   }
-
-  label:selected { &:focus, &:hover, & { background-color: darken($selected_bg_color, 10%); }}
-
-  *:link { @extend %link_selected; }
 }
 
 
@@ -4267,6 +4218,7 @@ button.titlebutton {
   }
 }
 
+
 // catch all extend :)
 
 %selected_items {
@@ -4274,8 +4226,6 @@ button.titlebutton {
 
   @at-root %nobg_selected_items, & {
     color: $selected_fg_color;
-
-    @if $variant == 'light' { outline-color: transparentize($selected_fg_color, 0.7); }
 
     &:disabled { color: mix($selected_fg_color, $selected_bg_color, 50%); }
 
@@ -4328,8 +4278,8 @@ cursor-handle {
 .context-menu { font: initial; } // Decouple the font of context menus from their entry/textview
 
 button.circular { // FIXME: aggregate to buttons
-  border-radius: 20px;
-  -gtk-outline-radius: 20px;
+  border-radius: 9999px;
+  -gtk-outline-radius: 9999px;
 
   label { padding: 0; }
 }
