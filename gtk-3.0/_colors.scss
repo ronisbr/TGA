@@ -7,7 +7,7 @@ $selected_fg_color:               #ffffff;
 $selected_bg_color:               #066dc1;
 
 $borders_color:                   #aaaaaa;
-$borders_edge:                    transparentize(white, 0.2);
+$borders_edge:                    transparentize($bg_color, 0.2);
 $selected_borders_color:          #cccccc;
 $alt_borders_color:               darken($bg_color, 35%);
 
@@ -16,7 +16,7 @@ $link_visited_color:              darken($selected_bg_color, 20%);
 $top_hilight:                     $borders_edge;
 $dark_fill:                       mix($borders_color, $bg_color, 50%);
 
-$headerbar_color:                 #cecece;
+$headerbar_color:                 #bfbfbf;
 $menu_color:                      $bg_color;
 $popover_bg_color:                $bg_color;
 $popover_hover_color:             lighten($bg_color, 5%);

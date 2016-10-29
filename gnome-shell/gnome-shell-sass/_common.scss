@@ -742,7 +742,7 @@ StScrollBar {
 /* TOP BAR */
 
 #panel {
-  background-color: transparentize($bg_color,0.3);
+  background-color: $bg_color;
   font-weight: bold;
   height: 1.86em;
 
@@ -1266,7 +1266,7 @@ StScrollBar {
   #dash {
     font-size: 9pt;
     color: $_bubble_fg_color;
-    background-color: transparentize($bg_color,0.25);
+    background-color: $bg_color;
     padding: 4px 0;
     border: 1px solid rgba(128, 128, 128, 0.4);
     border-left: 0px;
