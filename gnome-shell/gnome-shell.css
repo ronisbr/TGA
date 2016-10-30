@@ -19,7 +19,7 @@
  */
 /* GLOBALS */
 stage {
-  font-family: Cantarell, Sans-Serif;
+  font-family: Droid-Sans, Cantarell, Sans-Serif;
   font-size: 11pt;
   color: #2e3436; }
 
@@ -658,6 +658,7 @@ StScrollBar {
 /* TOP BAR */
 #panel {
   background-color: rgba(224, 224, 224, 0.96);
+  font-family: Droid-Sans, Cantarell;
   font-weight: bold;
   height: 1.86em; }
   #panel.unlock-screen, #panel.login-screen, #panel.lock-screen {
