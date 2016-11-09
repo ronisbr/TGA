@@ -43,6 +43,14 @@ theme. It can be installed from:
 
 https://extensions.gnome.org/extension/19/user-themes/
 
+Overview Wallpaper
+------------------
+
+The overview wallpaper will be the one in `./TGA/wallpapers/wallpaper-blur.jpg`
+regardless the selection in the desktop. Hence, after you decide what wallpaper
+you will use, create a blurred, darker version and overwrite the
+`wallpaper-blur.jpg` file.
+
 Additional Information
 ----------------------
 
