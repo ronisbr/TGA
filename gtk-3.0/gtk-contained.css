@@ -2065,8 +2065,11 @@ window.csd > .titlebar:not(headerbar) {
  * Tree Views *
  **************/
 treeview.view {
-  border-left-color: #a6a6a6;
-  border-top-color: #f5f5f5; }
+  border-bottom-color: #d9d9d9;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-left-color: #d9d9d9;
+  border-top-color: #d9d9d9; }
   * {
     -GtkTreeView-horizontal-separator: 4;
     -GtkTreeView-grid-line-width: 1;
@@ -2093,6 +2096,7 @@ treeview.view {
     treeview.view.separator:backdrop {
       color: rgba(245, 245, 245, 0.1); }
   treeview.view:backdrop {
+    border-bottom-color: #e5e5e5;
     border-left-color: #cbcbcb;
     border-top: #f5f5f5; }
   treeview.view:drop(active) {
@@ -2156,11 +2160,16 @@ treeview.view {
     text-shadow: none;
     box-shadow: none; }
     treeview.view header button:hover {
-      color: #797979;
+      color: #066dc1;
       box-shadow: none;
       transition: none; }
     treeview.view header button:active {
-      color: #4c4c4c;
+      color: #ffffff;
+      background-color: #066dc1;
+      box-shadow: none;
+      transition: none; }
+    treeview.view header button:backdrop label {
+      color: #e5e5e5;
       transition: none; }
   treeview.view header button:last-child:backdrop, treeview.view header button:last-child {
     border-right-style: none; }
@@ -2185,7 +2194,7 @@ treeview.view header button, treeview.view header button:hover, treeview.view he
   padding: 0 6px;
   background-image: none;
   border-style: none solid solid none;
-  border-color: #f5f5f5;
+  border-color: #d9d9d9;
   border-radius: 0;
   text-shadow: none; }
   treeview.view header button:disabled {
@@ -2193,7 +2202,7 @@ treeview.view header button, treeview.view header button:hover, treeview.view he
     background-image: none; }
   treeview.view header button:backdrop {
     color: #cbcbcb;
-    border-color: #f5f5f5;
+    border-color: #e5e5e5;
     border-style: none solid solid none;
     background-image: none;
     background-color: #fcfcfc; }

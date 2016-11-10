@@ -1607,8 +1607,13 @@ treeview.view {
     -GtkTreeView-expander-size: 16;
    }
 
-  border-left-color: mix($fg_color, $base_color, 50%); // this is actually the tree lines color,
-  border-top-color: $bg_color;                         // while this is the grid lines color, better then nothing
+  // Add lines in the bottom of every item in tree view.
+  border-bottom-color: lighten($headerbar_color, 10%);
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+
+  border-left-color: lighten($headerbar_color, 10%);
+  border-top-color: lighten($headerbar_color, 10%);
 
   rubberband { @extend rubberband; } // to avoid borders being overridden by the previously set props
 
@@ -1644,6 +1649,7 @@ treeview.view {
   }
 
   &:backdrop {
+    border-bottom-color: lighten($headerbar_color, 15%);
     border-left-color: mix($backdrop_fg_color, $backdrop_bg_color, 50%);
     border-top: $backdrop_bg_color;
   }
@@ -1749,7 +1755,7 @@ treeview.view {
 
   header {
     button {
-      $_column_header_color: mix($fg_color, $base_color, 50%);
+      $_column_header_color: darken($headerbar_color, 10%);
 
       @extend %column_header_button;
 
@@ -1762,7 +1768,7 @@ treeview.view {
       &:hover {
         @extend %column_header_button;
 
-        color: mix($_column_header_color, $fg_color, 50%);
+	color: $selected_bg_color;
         box-shadow: none;
         transition: none; //I shouldn't need this
       }
@@ -1770,7 +1776,14 @@ treeview.view {
       &:active {
         @extend %column_header_button;
 
-        color: $fg_color;
+	color: $selected_fg_color;
+	background-color: $selected_bg_color;
+        box-shadow: none;
+        transition: none; //I shouldn't need this
+      }
+
+      &:backdrop label {
+        color: lighten($headerbar_color, 15%);
         transition: none; //I shouldn't need this
       }
     }
@@ -1800,7 +1813,7 @@ treeview.view {
   padding: 0 6px;
   background-image: none;
   border-style: none solid solid none;
-  border-color: $bg_color;
+  border-color: lighten($headerbar_color, 10%);
   border-radius: 0;
   text-shadow: none;
 
@@ -1811,7 +1824,7 @@ treeview.view {
 
   &:backdrop {
     color: mix($backdrop_fg_color, $backdrop_bg_color, 50%);
-    border-color: $backdrop_bg_color;
+    border-color: lighten($headerbar_color, 15%);
     border-style: none solid solid none;
     background-image: none;
     background-color: $backdrop_base_color;
