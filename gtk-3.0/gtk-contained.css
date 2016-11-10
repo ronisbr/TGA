@@ -2065,9 +2065,6 @@ window.csd > .titlebar:not(headerbar) {
  * Tree Views *
  **************/
 treeview.view {
-  border-bottom-color: #d9d9d9;
-  border-bottom-style: solid;
-  border-bottom-width: 1px;
   border-left-color: #d9d9d9;
   border-top-color: #d9d9d9; }
   * {
@@ -2080,8 +2077,8 @@ treeview.view {
   treeview.view:selected:focus, treeview.view:selected {
     border-radius: 0; }
   treeview.view:selected:backdrop, treeview.view:selected {
-    border-left-color: #83b6e0;
-    border-top-color: rgba(76, 76, 76, 0.1); }
+    border-left-color: #e5e5e5;
+    border-top-color: #e5e5e5; }
   treeview.view:disabled {
     color: #6c6c6c; }
     treeview.view:disabled:selected {
@@ -2092,13 +2089,12 @@ treeview.view {
       color: #cfcfcf; }
   treeview.view.separator {
     min-height: 2px;
-    color: #f5f5f5; }
+    color: #d9d9d9; }
     treeview.view.separator:backdrop {
-      color: rgba(245, 245, 245, 0.1); }
+      color: #e5e5e5; }
   treeview.view:backdrop {
-    border-bottom-color: #e5e5e5;
-    border-left-color: #cbcbcb;
-    border-top: #f5f5f5; }
+    border-left-color: #e5e5e5;
+    border-top-color: #e5e5e5; }
   treeview.view:drop(active) {
     border-style: solid none;
     border-width: 1px;
@@ -4763,3 +4759,13 @@ read if you used those and something break with a version upgrade you're on your
 .nautilus-desktop.nautilus-canvas-item:hover,
 .nautilus-desktop.nautilus-canvas-item:selected {
   text-shadow: none; }
+
+.nautilus-window treeview.view {
+  border-bottom-color: #d9d9d9;
+  border-bottom-style: solid;
+  border-bottom-width: 1px; }
+
+.nautilus-window treeview.view:backdrop {
+  border-bottom-color: #e5e5e5;
+  border-bottom-style: solid;
+  border-bottom-width: 1px; }

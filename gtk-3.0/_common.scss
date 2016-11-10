@@ -1607,13 +1607,8 @@ treeview.view {
     -GtkTreeView-expander-size: 16;
    }
 
-  // Add lines in the bottom of every item in tree view.
-  border-bottom-color: lighten($headerbar_color, 10%);
-  border-bottom-style: solid;
-  border-bottom-width: 1px;
-
-  border-left-color: lighten($headerbar_color, 10%);
-  border-top-color: lighten($headerbar_color, 10%);
+  border-left-color: lighten($headerbar_color, 10%); // this is actually the tree lines color,
+  border-top-color: lighten($headerbar_color, 10%);  // while this is the grid lines color, better then nothing
 
   rubberband { @extend rubberband; } // to avoid borders being overridden by the previously set props
 
@@ -1625,8 +1620,8 @@ treeview.view {
     }
 
     &:backdrop, & {
-      border-left-color: mix($selected_fg_color, $selected_bg_color, 50%);
-      border-top-color: transparentize($fg_color, 0.9); // doesn't work unfortunatelly
+      border-left-color: lighten($headerbar_color, 15%);
+      border-top-color: lighten($headerbar_color, 15%);
     }
   }
 
@@ -1643,15 +1638,14 @@ treeview.view {
 
   &.separator {
     min-height: 2px;
-    color: $bg_color;
+    color: lighten($headerbar_color, 10%);
 
-    &:backdrop { color: transparentize($bg_color, 0.9); }
+    &:backdrop { color: lighten($headerbar_color,15%); }
   }
 
   &:backdrop {
-    border-bottom-color: lighten($headerbar_color, 15%);
-    border-left-color: mix($backdrop_fg_color, $backdrop_bg_color, 50%);
-    border-top: $backdrop_bg_color;
+    border-left-color: lighten($headerbar_color, 15%);
+    border-top-color: lighten($headerbar_color, 15%);
   }
   &:drop(active) {
     border-style: solid none;

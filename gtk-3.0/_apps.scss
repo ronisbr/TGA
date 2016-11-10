@@ -24,3 +24,15 @@
 .nautilus-desktop.nautilus-canvas-item:selected {
   text-shadow: none;
 }
+
+.nautilus-window treeview.view {
+  border-bottom-color: lighten($headerbar_color, 10%);
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+}
+
+.nautilus-window treeview.view:backdrop {
+  border-bottom-color: lighten($headerbar_color, 15%);
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+}
