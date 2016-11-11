@@ -2458,97 +2458,53 @@ treeview ~ scrollbar.vertical {
  * Switch *
  **********/
 switch {
-  font-weight: bold;
-  font-size: smaller;
-  outline-offset: -4px;
+  font-size: 1px;
 
-  // similar to the .scale
-  border: 1px solid $borders_color;
-  border-radius: 3px;
-  color: $fg_color;
-  background-color: $dark_fill;
-  text-shadow: 0 1px transparentize(black, 0.9);
+  min-width: 52px;
+  min-height: 24px;
 
-  &:checked {
-    color: $selected_fg_color;
-    border-color: $selected_borders_color;
-    background-color: $selected_bg_color;
-    text-shadow: 0 1px transparentize($selected_borders_color, 0.5),
-                 0 0 2px transparentize(white, 0.4);
-  }
+  background-size: 52px 24px;
+  background-repeat: no-repeat;
+  background-position: center center;
 
-  &:disabled {
-    color: $insensitive_fg_color;
-    border-color: $borders_color;
-    background-color: $insensitive_bg_color;
-    text-shadow: none;
-  }
-
-  &:backdrop {
-    color: $backdrop_fg_color;
-    border-color: $backdrop_borders_color;
-    background-color: $backdrop_dark_fill;
-    text-shadow: none;
-    transition: $backdrop_transition;
-
-    &:checked {
-      @if $variant == 'light' { color: $backdrop_bg_color; }
-      border-color: if($variant == 'light', $selected_bg_color,
-                                            $selected_borders_color);
-      background-color: $selected_bg_color;
-    }
-
-    &:disabled {
-      color: $backdrop_insensitive_color;
-      border-color: $backdrop_borders_color;
-      background-color: $insensitive_bg_color;
-    }
-  }
+  transition: 400ms ease-in-out;
 
   slider {
-    margin: -1px;
-    min-width: 44px;
-    min-height: 26px;
-    border: 1px solid;
-    border-radius: 3px;
-    transition: $button_transition;
-
-    @include button(normal-alt, $edge: $shadow_color);
+    min-width: 1px;
+    min-height: 1px;
   }
 
-  &:hover slider { @include button(hover-alt, $edge: $shadow_color); }
-
-  &:checked slider { border: 1px solid $selected_borders_color; }
-
-  &:disabled slider { @include button(insensitive); }
-
-  &:backdrop {
-    slider {
-      transition: $backdrop_transition;
-
-      @include button(backdrop);
-    }
-
-    &:checked slider { border-color: if($variant == 'light', $selected_bg_color, $selected_borders_color); }
-
-    &:disabled slider { @include button(backdrop-insensitive); }
-  }
-
-  row:selected & {
-    @if $variant == 'light' {
-      box-shadow: none;
-      border-color: $selected_borders_color;
-
-      &:backdrop { border-color: $selected_borders_color; }
-
-      &.slider:dir(rtl) { border-left-color: $borders_color; }
-      &.slider:dir(ltr) { border-right-color: $borders_color; }
-
-      &.slider { &:checked, & { border-color: $selected_borders_color; } }
-    }
+  &, slider {
+    outline-color: transparent;
+    color: transparent;
+    border: none;
+    box-shadow: none;
   }
 }
 
+$darker_asset_suffix: "-dark";
+@each $k,$l in ('',''),
+               (':checked','-active'),
+               (':disabled','-insensitive'),
+               (':checked:disabled','-active-insensitive') {
+
+  // load switch troughs from .png files in assets directory
+
+  switch#{$k} {
+    background-image: -gtk-scaled(url("assets/switch#{$l}#{$asset_suffix}.png"),url("assets/switch#{$l}#{$asset_suffix}@2.png"));
+  }
+
+  menuitem:#{hover switch}#{$k},
+  row:#{selected switch}#{$k},
+  infobar switch#{$k} {
+    background-image: -gtk-scaled(url("assets/switch#{$l}-selected.png"),url("assets/switch#{$l}-selected@2.png"));
+  }
+
+  headerbar switch#{$k},
+  .primary-toolbar switch#{$k} {
+    background-image: -gtk-scaled(url("assets/switch#{$l}-header#{$darker_asset_suffix}.png"),url("assets/switch#{$l}-header#{$darker_asset_suffix}@2.png"));
+  }
+}
 
 /*************************
  * Check and Radio items *
