@@ -438,9 +438,9 @@ $_dot_color: if($variant=='light', $selected_bg_color,
 button {
   @at-root %button_basic, & {
 
-    min-height: 24px;
-    min-width: 16px;
-    padding: 4px 8px;
+    min-height: 22px;
+    min-width: 20px;
+    padding: 2px 6px;
     border: 1px solid;
     border-radius: 3px;
     transition: $button_transition;
@@ -505,18 +505,18 @@ button {
 
     &.image-button {
       min-width: 24px;
-      padding-left: 4px;
-      padding-right: 4px;
+      padding-left: 5px;
+      padding-right: 5px;
     }
 
     &.text-button {
-      padding-left: 16px;
-      padding-right: 16px;
+      padding-left: 12px;
+      padding-right: 12px;
     }
 
     &.text-button.image-button {
-      padding-left: 8px;
-      padding-right: 8px;
+      padding-left: 5px;
+      padding-right: 5px;
 
       label {
         padding-left: 8px;
@@ -1336,7 +1336,7 @@ searchbar,
 %titlebar,
 headerbar {
   padding: 0 6px;
-  min-height: 46px;
+  min-height: 42px;
   border-width: 0 0 1px;
   border-style: solid;
   border-color: $alt_borders_color;
@@ -1494,12 +1494,12 @@ headerbar {
   .maximized & { &:backdrop, & { border-radius: 0; }} // squared corners when the window is maximized or tiled
 
   &.default-decoration {
-    min-height: 28px;
-    padding: 4px;
+    min-height: 22px;
+    padding: 3px;
 
     button.titlebutton {
-      min-height: 26px;
-      min-width: 26px;
+      min-height: 22px;
+      min-width: 22px;
       margin: 0;
       padding: 0;
     }

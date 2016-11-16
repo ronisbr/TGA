@@ -399,9 +399,9 @@ treeview entry.flat, treeview entry {
     background-image: -gtk-gradient(radial, center center, 0, center center, 0.5, to(#066dc1), to(transparent)); } }
 notebook > header > tabs > arrow,
 button {
-  min-height: 24px;
-  min-width: 16px;
-  padding: 4px 8px;
+  min-height: 22px;
+  min-width: 20px;
+  padding: 2px 6px;
   border: 1px solid;
   border-radius: 3px;
   transition: all 200ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -556,16 +556,16 @@ button {
   notebook > header > tabs > arrow.image-button,
   button.image-button {
     min-width: 24px;
-    padding-left: 4px;
-    padding-right: 4px; }
+    padding-left: 5px;
+    padding-right: 5px; }
   notebook > header > tabs > arrow.text-button,
   button.text-button {
-    padding-left: 16px;
-    padding-right: 16px; }
+    padding-left: 12px;
+    padding-right: 12px; }
   notebook > header > tabs > arrow.text-button.image-button,
   button.text-button.image-button {
-    padding-left: 8px;
-    padding-right: 8px; }
+    padding-left: 5px;
+    padding-right: 5px; }
     notebook > header > tabs > arrow.text-button.image-button label,
     button.text-button.image-button label {
       padding-left: 8px;
@@ -1714,7 +1714,7 @@ searchbar,
 .titlebar:not(headerbar),
 headerbar {
   padding: 0 6px;
-  min-height: 46px;
+  min-height: 42px;
   border-width: 0 0 1px;
   border-style: solid;
   border-color: #9c9c9c;
@@ -1993,12 +1993,12 @@ headerbar {
     border-radius: 0; }
   .default-decoration.titlebar:not(headerbar),
   headerbar.default-decoration {
-    min-height: 28px;
-    padding: 4px; }
+    min-height: 22px;
+    padding: 3px; }
     .default-decoration.titlebar:not(headerbar) button.titlebutton,
     headerbar.default-decoration button.titlebutton {
-      min-height: 26px;
-      min-width: 26px;
+      min-height: 22px;
+      min-width: 22px;
       margin: 0;
       padding: 0; }
   .solid-csd .titlebar:backdrop:dir(rtl):not(headerbar), .solid-csd .titlebar:backdrop:dir(ltr):not(headerbar), .solid-csd .titlebar:dir(rtl):not(headerbar), .solid-csd .titlebar:dir(ltr):not(headerbar), .solid-csd
